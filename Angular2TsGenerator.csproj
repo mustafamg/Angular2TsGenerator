@@ -33,6 +33,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.14.0, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.VisualStudio.TextTemplating.14.0.14.3.25407\lib\net45\Microsoft.VisualStudio.TextTemplating.14.0.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.VisualStudio.TextTemplating.Interfaces.10.0.10.0.30319\lib\net40\Microsoft.VisualStudio.TextTemplating.Interfaces.10.0.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.11.0, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.VisualStudio.TextTemplating.Interfaces.11.0.11.0.50727\lib\net45\Microsoft.VisualStudio.TextTemplating.Interfaces.11.0.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,6 +61,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>products_routing.tt</DependentUpon>
     </Compile>
+    <Compile Include="products\products_routingBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -87,6 +100,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>products.module.ts</LastGenOutput>
     </Content>
+    <None Include="packages.config" />
     <None Include="products\products_routing.tt">
       <Generator>TextTemplatingFilePreprocessor</Generator>
       <LastGenOutput>products_routing.cs</LastGenOutput>

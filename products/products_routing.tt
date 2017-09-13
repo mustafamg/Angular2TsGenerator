@@ -5,16 +5,18 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <# //var modelName="Proucts"; #>
+<#@parameter type="System.String" name="modelName"#>
+
 import { Routes, RouterModule } from '@angular/router';
-import { <#=ModelName #>Component } from './<#=ModelName.ToLower() #>.component';
-import { <#=ModelName #>ListComponent } from './components/<#=ModelName.ToLower() #>List/<#=ModelName.ToLower() #>List.component';
+import { <#=modelName #>Component } from './<#=modelName.ToLower() #>.component';
+import { <#=modelName #>ListComponent } from './components/<#=modelName.ToLower() #>List/<#=modelName.ToLower() #>List.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: <#=ModelName #>Component,
+    component: <#=modelName #>Component,
     children: [
-      { path: 'list', component: <#=ModelName #>ListComponent },     
+      { path: 'list', component: <#=modelName #>ListComponent },     
     ],
   },
 ];
