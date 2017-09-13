@@ -1,0 +1,14 @@
+<#@ template debug = "false" hostspecific= "false" language= "C#" #>
+<#@ output extension = ".ts" #>
+
+<# var modelName = "Proucts"; #>
+
+import { Component } from '@angular/core';
+
+@Component({
+  template: `<router-outlet></router-outlet>`,
+})
+export class <#=modelName #>Component {
+  constructor() {
+  }
+}

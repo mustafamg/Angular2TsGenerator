@@ -1,0 +1,60 @@
+<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".ts" #>
+
+<# var modelName="Proucts"; #>
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule as AngularFormsModule } from '@angular/forms';
+import { AppTranslationModule } from '../../app.translation.module';
+import { NgaModule } from '../../theme/nga.module';
+import { NgbRatingModule , NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpModule, JsonpModule } from '@angular/http';
+import { routing } from './<#=modelName #>.routing';
+import { <#=modelName #>Component } from './<#=modelName #>.component';
+import { ProductCompanySearchComponent } from './components/productCompanySearch/productCompanySearch.component';
+import { <#=modelName #>ListComponent } from './components/<#=modelName #>List/<#=modelName #>List.component';
+import { GridModule } from '@progress/kendo-angular-grid';
+import { SliderModule } from '@progress/kendo-angular-inputs';
+import { StargateAPIService } from 'app/services/StargateAPI.Service';
+import { <#=modelName #>Service } from 'app/services/product.service';
+import { DialogModule } from '@progress/kendo-angular-dialog';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { TreeviewModule } from 'ngx-treeview/src';
+import { PopupModule } from '@progress/kendo-angular-popup';
+import { SharedModule } from 'App/pages/sharedComponents/sharedModule';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    AngularFormsModule,
+    AppTranslationModule,
+    NgaModule,
+    NgbRatingModule,
+    routing,
+    GridModule,
+    SliderModule,
+    NgbModalModule,
+    JsonpModule,
+    DialogModule,
+    ButtonsModule,
+    ReactiveFormsModule,
+    FormsModule,
+    TreeviewModule.forRoot(),
+    PopupModule,
+    SharedModule,
+  ],
+  entryComponents: [
+  
+  ],
+  declarations: [
+   <#=modelName #>Component,
+   <#=modelName #>ListComponent,
+  ],
+   providers: [   
+    StargateAPIService,
+    <#=modelName #>Service,
+  ],
+})
+export class <#=modelName #>Module {
+}

@@ -1,0 +1,86 @@
+  <div class="container-fluid"> 
+    <div class="row" >       
+        <div class="col-md-7">
+            <div  *ngIf="(responseMessage )"  class="alert alert-success" role="alert" [ngClass] = "'success'">
+                Saved Successfully
+           </div>
+             <ba-card  baCardClass="with-scroll">
+            <div class="row">
+             
+            <div class="col-md-10" >  
+            <input #txtProductName  type="text" class="form-control "  
+            (keyup.enter)="loadItems(txtProductName.value)" 
+            [(ngModel)]="searchText" />
+            </div>
+        
+            <div class="col-md-2"> 
+            <input type="submit" class="btn btn-primary" 
+            value="Search" (click)="loadItems(txtProductName.value)" />
+            </div>
+              </div>      
+            </ba-card>
+        
+       </div>
+    </div>  
+    <div class="row" >
+        <div >
+              <nga-notelimitation-component [maxCompanyLimitation]='limitationInfo?.maxCompanyLimitation' [selectedItemsCount]='limitationInfo?.selectedItemsCount' ></nga-notelimitation-component>
+        </div>
+        <div class="col-md-9" style="text-align: right;">
+             <button [disabled]="(anyItemChecked())" style="margin-right:10px; display: inline;" class="btn btn-primary" (click)="Save()">Save</button>              
+        </div>   
+		<div  class="row" style="text-align: left;margin-top:20px"> 
+			<kendo-grid  
+							[data]="gridView | async"
+							[pageSize]="state.take"
+							[skip]="state.skip"
+							[pageable]="true"
+							[height]="350"                  
+							(dataStateChange)="dataStateChange($event)" >
+					<kendo-grid-column field="isSelected" title="" width="40">
+						<ng-template kendoGridCellTemplate let-dataItem >
+							<input #CB type="checkbox"  [disabled]="(dataItem.isSelected)" [checked]="(dataItem.isSelected||(isChecked(dataItem)))" (click)="getClick(CB.checked,dataItem)" />
+						</ng-template>
+					</kendo-grid-column>
+
+					<kendo-grid-column  field="Id"  [hidden]="true"  width="40">
+					</kendo-grid-column> 
+					<kendo-grid-column field="p1" title="p1" >
+					</kendo-grid-column>
+					<kendo-grid-column field="p2" title="p2" >
+					</kendo-grid-column>
+           
+			 </kendo-grid>         
+		</div>                
+    </div>  
+</div>
+
+<kendo-dialog    *ngIf="opened" (close)="closeExceed('cancel')">
+    <kendo-dialog-titlebar>
+        <div style="font-size: 18px; line-height: 1.3em;">
+        <span class="k-icon k-i-warning"></span> Max Amount exeeded
+        </div>
+    </kendo-dialog-titlebar>
+        
+    <p style="margin: 30px; text-align: center;">
+        You have exceeded items limitation by {{ this.addedProductList.length - (this.limitationInfo.maxCompanyLimitation-this.limitationInfo.selectedItemsCount)}}
+        </p>
+    <kendo-dialog-actions>
+        <button kendoButton (click)="closeExceed('discard')">Discard changes / Back Home </button>
+        <button kendoButton (click)="closeExceed('deselect')" primary="true">Back De-Select Extra Items</button>
+    </kendo-dialog-actions>
+</kendo-dialog>
+
+<kendo-dialog    *ngIf="openConfirmation" (close)="closeConfirmation('cancel')">
+    <kendo-dialog-titlebar>
+        <div style="font-size: 18px; line-height: 1.3em;">
+        <span class="k-icon k-i-warning"></span>Add new products to company
+        </div>
+    </kendo-dialog-titlebar>
+        
+    <p style="margin: 30px; text-align: center;">Are you sure you want to save ({{this.addedProductList.length}}) products to your company</p>
+    <kendo-dialog-actions>
+            <button kendoButton (click)="closeConfirmation('No')" >Cancel</button>
+        <button kendoButton (click)="closeConfirmation('Yes')" primary="true">Ok </button>
+    </kendo-dialog-actions>
+</kendo-dialog>
